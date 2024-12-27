@@ -42,7 +42,7 @@ jobs:
             head=${{ github.event.pull_request.head.sha }}
             base=${{ github.event.pull_request.base.sha }}
             ci_type=$(python3 .github/workflows/scripts/generate-ci-type.py $head $base)
-          fi;
+          fi
           if [ "$ci_type" == "quick" ]; then
             os_selection="$QUICK_OS"
           else
@@ -51,14 +51,12 @@ jobs:
           os_json=$(echo ${os_selection} | jq -c)
           
           # Add optional runners
-          if ${{ github.event.inputs.include_stream9 }}; then
+          if [ "${{ github.event.inputs.include_stream9 }}" == 'true' ]; then
             os_json=$(echo $os_json | jq '. += ["centos-stream9"]')
           fi
-          if ${{ github.event.inputs.include_stream10 }}; then
+          if [ "${{ github.event.inputs.include_stream10 }}" == 'true' ]; then
             os_json=$(echo $os_json | jq '. += ["centos-stream10"]')
           fi
-          
-          
           
           echo "os=$os_json" >> $GITHUB_OUTPUT
           echo "ci_type=$ci_type" >> $GITHUB_OUTPUT
