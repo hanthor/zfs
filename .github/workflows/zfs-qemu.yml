@@ -42,7 +42,7 @@ jobs:
             head=${{ github.event.pull_request.head.sha }}
             base=${{ github.event.pull_request.base.sha }}
             ci_type=$(python3 .github/workflows/scripts/generate-ci-type.py $head $base)
-          fi
+          fi;
           if [ "$ci_type" == "quick" ]; then
             os_selection="$QUICK_OS"
           else
