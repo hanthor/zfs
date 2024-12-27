@@ -52,10 +52,10 @@ jobs:
           
           # Add optional runners
           if [ "${{ github.event.inputs.include_stream9 }}" == 'true' ]; then
-            os_json=$(echo $os_json | jq '. += ["centos-stream9"]')
+            os_json=$(echo $os_json | jq -c '. += ["centos-stream9"]')
           fi
           if [ "${{ github.event.inputs.include_stream10 }}" == 'true' ]; then
-            os_json=$(echo $os_json | jq '. += ["centos-stream10"]')
+            os_json=$(echo $os_json | jq -c '. += ["centos-stream10"]')
           fi
           
           echo $os_json
