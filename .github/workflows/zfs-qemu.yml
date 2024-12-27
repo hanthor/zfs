@@ -58,6 +58,7 @@ jobs:
             os_json=$(echo $os_json | jq '. += ["centos-stream10"]')
           fi
           
+          echo $os_json
           echo "os=$os_json" >> $GITHUB_OUTPUT
           echo "ci_type=$ci_type" >> $GITHUB_OUTPUT
 
