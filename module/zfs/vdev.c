@@ -2041,6 +2041,7 @@ vdev_open(vdev_t *vd)
 	vd->vdev_cant_read = B_FALSE;
 	vd->vdev_cant_write = B_FALSE;
 	vd->vdev_fault_wanted = B_FALSE;
+	vd->vdev_remove_wanted = B_FALSE;
 	vd->vdev_min_asize = vdev_get_min_asize(vd);
 
 	/*
@@ -6579,3 +6580,7 @@ ZFS_MODULE_PARAM_CALL(zfs_vdev, zfs_vdev_, max_auto_ashift,
 	param_set_max_auto_ashift, param_get_uint, ZMOD_RW,
 	"Maximum ashift used when optimizing for logical -> physical sector "
 	"size on new top-level vdevs");
+
+ZFS_MODULE_PARAM_CALL(zfs_vdev, zfs_vdev_, raidz_impl,
+		param_set_raidz_impl, param_get_raidz_impl, ZMOD_RW,
+		"RAIDZ implementation");
